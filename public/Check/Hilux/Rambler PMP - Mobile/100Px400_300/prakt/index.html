@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="authoring-tool" content="Adobe_Animate_CC">
+<meta name="ad.size" content="width=100%,height=400">
+<title></title>
+<script type="text/javascript" src="//dsp-rambler.ru/js/createjs/createjs-2015.11.26.min.js"></script>
+<script type="text/javascript" src="content.js"></script>
+<script>var canvas,stage,exportRoot,anim_container,dom_overlay_container,fnStartAnimation;function init(){canvas=document.getElementById("cvr_cnvs"),anim_container=document.getElementById("animation_container"),dom_overlay_container=document.getElementById("dom_overlay_container");var t=AdobeAn.getComposition("E3CCC2B2DA6EFF40AA7B189F6C5C7189"),e=t.getLibrary(),n=new createjs.LoadQueue(!1);n.addEventListener("fileload",function(e){handleFileLoad(e,t)}),n.addEventListener("complete",function(e){handleComplete(e,t)});e=t.getLibrary();n.loadManifest(e.properties.manifest)}function handleFileLoad(e,t){var n=t.getImages();e&&"image"==e.item.type&&(n[e.item.id]=e.result)}function handleComplete(e,t){var n=t.getLibrary(),a=t.getSpriteSheet(),o=e.target,r=n.ssMetadata;for(i=0;i<r.length;i++)a[r[i].name]=new createjs.SpriteSheet({images:[o.getResult(r[i].name)],frames:r[i].frames});exportRoot=new n.Toyota_100Px400_300_2state,(stage=new n.Stage(canvas)).enableMouseOver(),fnStartAnimation=function(){stage.addChild(exportRoot),createjs.Ticker.setFPS(n.properties.fps),createjs.Ticker.addEventListener("tick",stage)},registerButtons(),AdobeAn.makeResponsive(!1,"both",!1,1,[canvas,anim_container,dom_overlay_container]),AdobeAn.compositionLoaded(n.properties.id),fnStartAnimation()}function updateStretchLayout(e,t){var n=e?window.innerWidth:970,a=t?window.innerHeight:400,i=window.devicePixelRatio||1;canvas.width=n*i,canvas.height=a*i,canvas.style.width=n+"px",canvas.style.height=a+"px",anim_container.style.width=n+"px",anim_container.style.height=a+"px",dom_overlay_container.style.width=n+"px",dom_overlay_container.style.height=a+"px"}</script>
+<script type="text/javascript">function registerButtons(){for(var t in delete window.cvrTrackButtons[1],window.cvrTrackButtons){var n=window.cvrTrackButtons[t];n.html=document.getElementById("click$index$_area".replace("$index$",t)),n.html.style.position="absolute",n.html.style.pointerEvents="all",n.html.addEventListener("mouseover",function(){this.cnvs.gotoAndStop(1)}.bind(n)),n.html.addEventListener("mouseout",function(){this.cnvs.gotoAndStop(0)}.bind(n)),n.html.addEventListener("mousedown",function(){this.cnvs.gotoAndStop(2)}.bind(n)),n.step=function(){var t,n,s,i;this.cnvs.isVisible()&&this.cnvs.stage?(t=window.devicePixelRatio||1,n=this.cnvs.localToGlobal(this.cnvs.nominalBounds.x,this.cnvs.nominalBounds.y),s=this.cnvs.localToGlobal(this.cnvs.nominalBounds.width,this.cnvs.nominalBounds.height),i=this.cnvs.localToGlobal(0,0),s.x-=i.x,s.y-=i.y,n.x/=t,n.y/=t,s.x/=t,s.y/=t):(n={x:0,y:0},s={x:0,y:0}),this.html.style.left=n.x+"px",this.html.style.top=n.y+"px",this.html.style.width=s.x+"px",this.html.style.height=s.y+"px",window.requestAnimationFrame(this.step)},n.step=n.step.bind(n),n.step()}}window.cvrTrackButtons={};</script>
+</head>
+<body onload="init();" style="margin:0;overflow:hidden">
+<div id="animation_container" style="position:absolute;background-color:rgba(255,255,255,0);width:970px;height:400px">
+<a id="click1_area" href="%clickurl_1%" target="_blank"><canvas id="cvr_cnvs" width="970" height="400" style="position:absolute;display:block;background-color:rgba(255,255,255,0)"></canvas></a>
+<div id="dom_overlay_container" style="pointer-events:none;overflow:hidden;position:absolute;width:970px;height:400px;left:0;top:0;display:block">
+<a id="click2_area" href="%clickurl_2%" target="_blank"></a><a id="click3_area" href="%clickurl_3%" target="_blank"></a>
+</div>
+<div style="position:absolute;left:0;top:0;width:1.1px;height:100%;background-color:#000"></div>
+<div style="position:absolute;left:0;top:0;width:100%;height:1.1px;background-color:#000"></div>
+<div style="position:absolute;left:100%;transform:translateX(-1.1px);top:0;width:1.1px;height:100%;background-color:#000"></div>
+<div style="position:absolute;left:0;top:100%;transform:translateY(-1.1px);width:100%;height:1.1px;background-color:#000"></div>
+</div>
+</body>
+</html>
