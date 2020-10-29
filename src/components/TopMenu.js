@@ -340,7 +340,7 @@ class TopMenu extends Component {
 
       let options=[];
       options.push(
-          <option key={"all"} value={"all"}>Разделы ({sections.length})</option>
+          <option key={"all"} value={"all"}>Разделы ({sections.length+1})</option>
       );
 
       options.push(
