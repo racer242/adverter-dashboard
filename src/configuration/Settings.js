@@ -47,6 +47,8 @@ const settings = {
   isMobile:isMobile(),
   isLocal:isLocal(),
 
+  anyImage:/\.(gif|jpg|jpeg|png|svg)$/gi,
+
   reloadTimeout:30000,
   loadTimeout:5000,
 
@@ -63,8 +65,10 @@ const settings = {
     paused:{color:"#999999",title:"На паузе",fill:"#DDDDDD"},
   },
 
-  openTitle:"ОТКРЫТЬ",
-
+  openTitle:"ДЕМО",
+  downloadZip:"ZIP",
+  downloadGif:"GIF",
+  downloadJpg:"JPG",
 }
 
 

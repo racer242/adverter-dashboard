@@ -168,6 +168,7 @@ class DataManager extends Component {
       data.statuses[creative.state]++;
 
       creative.backupPath=correctUrl(creative.backupPath);
+      creative.zipPath=correctUrl(creative.zipPath);
       creative.demoPath=correctUrl(creative.demoPath);
       creative.framesPath=correctUrl(creative.framesPath);
 

@@ -124,6 +124,7 @@ class ScrollPlace extends Component {
             layer={this.state.viewStatus.mode}
             frameIndex={this.state.viewStatus.currentFrame}
             backupPath={creative.backupPath}
+            zipPath={creative.zipPath}
             demoPath={creative.demoPath}
             feed={creative.feed}
             width={creative.format.width}

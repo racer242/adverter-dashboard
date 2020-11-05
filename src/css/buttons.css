@@ -26,3 +26,48 @@
 .sound-button.hover {
   background-color: rgba(22, 90, 165, 1);
 }
+
+.status-button {
+  /* position: absolute; */
+  /* left:0; */
+  /* top:0; */
+  background-color: #DDDDDD;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  font-size: 8px;
+  margin-left: 5px;
+}
+.status-button:hover {
+  color: #FFFFFF;
+  background-color: #999999;
+  cursor: pointer;
+}
+
+.status-input {
+  padding: 0px;
+  margin: 0px;
+  width: 13px;
+  height: 13px;
+  vertical-align: middle;
+  margin-left: 3px;
+  cursor: pointer;
+}
+
+
+
+/* .demo-item {
+  position: absolute;
+  right:0;
+  bottom:0;
+  background-color: #DDDDDD;
+  padding: 4px;
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 8px;
+}
+.demo-item:hover {
+  color: #FFFFFF;
+  background-color: #999999;
+  cursor: pointer;
+} */

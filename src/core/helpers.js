@@ -32,10 +32,26 @@ export const correctUrl = (url) => {
 }
 
 export const openLink = (link) => {
-  // let url=correctUrl(link)
-  // console.log("??",url);
   window.open(link,"_blank")
 }
+
+export const downloadLink = (link) => {
+  var a = document.createElement('a');
+  a.href = link;
+  link = link.substr(link.lastIndexOf('/') + 1);
+  if (link.indexOf('?')>=0) {
+    link = link.substr(0,link.indexOf('?'));
+  }
+
+  if ((settings.isLocal)&&(link.match(settings.anyImage))) {
+    a.target="_blank";
+  } else {
+    a.download = link;
+  }
+  a.click();
+
+}
+
 
 export const formatWeight = (weight) => {
   if (weight==null) {

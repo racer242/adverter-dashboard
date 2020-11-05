@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import settings from '../configuration/Settings'
-import { openLink, formatWeight } from '../core/helpers'
+import { openLink, downloadLink, formatWeight } from '../core/helpers'
 import {
   passCreative,
  } from '../actions/appActions';
@@ -13,6 +13,8 @@ class CreativeStatusBar extends Component {
     this.state={
     }
     this.onDemoClick=this.onDemoClick.bind(this);
+    this.onZipClick=this.onZipClick.bind(this);
+    this.onBackupClick=this.onBackupClick.bind(this);
     this.passedCheckbox_changeHandler=this.passedCheckbox_changeHandler.bind(this);
     this.showError_clickHandler=this.showError_clickHandler.bind(this);
   }
@@ -33,6 +35,14 @@ class CreativeStatusBar extends Component {
     }
   }
 
+  onBackupClick() {
+    downloadLink(this.props.backupPath)
+  }
+
+  onZipClick() {
+    downloadLink(this.props.zipPath)
+  }
+
   passedCheckbox_changeHandler(event) {
     // console.log("passedCheckbox",event.target.checked);
     this.store.dispatch(
@@ -51,33 +61,6 @@ class CreativeStatusBar extends Component {
     children.push(this.props.children);
     let status=this.props.status;
     if (!status) status="empty";
-
-    if ((this.props.status==="completed")||(this.props.status==="paused")) {
-      if (this.props.demoPath) {
-        children.push(
-          <div key="demo" className="status-item demo-item" onClick={this.onDemoClick}>{settings.openTitle}</div>
-        );
-
-        let passed=this.props.passed;
-        if (!passed) {
-          passed=false;
-        } else {
-          passed=true;
-        }
-
-        children.push(
-          <input
-            key="passed"
-            name="passed"
-            type="checkbox"
-            className="status-item"
-            checked={passed}
-            onChange={this.passedCheckbox_changeHandler}
-          />
-        );
-      }
-    }
-
 
     children.push(
       <div
@@ -106,6 +89,54 @@ class CreativeStatusBar extends Component {
         <div key="weight" className="status-item" dangerouslySetInnerHTML={{ __html: weight }}></div>
       );
     }
+
+
+    if ((this.props.status==="completed")||(this.props.status==="paused")) {
+      if (this.props.demoPath) {
+
+        let passed=this.props.passed;
+        if (!passed) {
+          passed=false;
+        } else {
+          passed=true;
+        }
+
+        children.push(
+          <input
+            key="passed"
+            name="passed"
+            type="checkbox"
+            className="status-item status-input"
+            checked={passed}
+            onChange={this.passedCheckbox_changeHandler}
+          />
+        );
+
+        if ((this.props.zipPath)&&(this.props.platform!=="Static")) {
+          children.push(
+            <div key="zip" className="status-item status-button" onClick={this.onZipClick}>{settings.downloadZip}</div>
+          );
+        }
+
+        if (this.props.backupPath) {
+          let title=settings.downloadGif;
+          if (this.props.backupPath.toLowerCase().indexOf("jpg")>0) {
+            title=settings.downloadJpg;
+          }
+          children.push(
+            <div key="backup" className="status-item status-button" onClick={this.onBackupClick}>{title}</div>
+          );
+        }
+
+        children.push(
+          <div key="demo" className="status-item status-button" onClick={this.onDemoClick}>{settings.openTitle}</div>
+        );
+
+
+
+      }
+    }
+
 
     return React.createElement(
       'div',

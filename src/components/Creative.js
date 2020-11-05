@@ -155,6 +155,7 @@ class Creative extends Component {
         platform={this.props.platform}
         demoPath={this.props.demoPath}
         backupPath={this.props.backupPath}
+        zipPath={this.props.zipPath}
       />
     );
 
