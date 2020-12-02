@@ -178,3 +178,10 @@ export const updateViewStatusFromHash = (viewStatus) => {
   }
   return result;
 }
+
+export const makeRequestUrl = (requestId,campName) => {
+
+  campName=campName.replace(/~/g,"[~]");
+  campName=campName.replace(/ /g,"~");
+  return "/"+requestId+"/"+campName+"/";
+}

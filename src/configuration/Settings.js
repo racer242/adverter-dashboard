@@ -69,6 +69,12 @@ const settings = {
   downloadZip:"ZIP",
   downloadGif:"GIF",
   downloadJpg:"JPG",
+
+  requestId: {
+    dashboard:"dashboard",
+    download:"download",
+  },
+
 }
 
 

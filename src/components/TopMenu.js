@@ -17,7 +17,9 @@ import {
 
 import {
   objectIsEmpty,
-  exportCreatives
+  exportCreatives,
+  makeRequestUrl,
+  downloadLink,
 } from '../core/helpers.js';
 
 import settings from '../configuration/Settings.js';
@@ -45,6 +47,7 @@ class TopMenu extends Component {
     this.selectSortMode_changeHandler=this.selectSortMode_changeHandler.bind(this);
     this.clear_buttonHandler=this.clear_buttonHandler.bind(this);
     this.reload_buttonHandler=this.reload_buttonHandler.bind(this);
+    this.download_buttonHandler=this.download_buttonHandler.bind(this);
   }
 
   componentDidMount() {
@@ -146,6 +149,11 @@ class TopMenu extends Component {
     this.store.dispatch(
       reloadStoreData()
     )
+  }
+
+  download_buttonHandler(event) {
+    let campUrl=makeRequestUrl(settings.requestId.download,this.state.name);
+    downloadLink(campUrl);
   }
 
   getSortedItems(itemsObject) {
@@ -483,6 +491,11 @@ class TopMenu extends Component {
       </select>
     );
 
+    if (!settings.isLocal) {
+      children.push(
+        <div key="download" className="menu-button" onClick={this.download_buttonHandler}>Скачать</div>
+      );
+    }
 
     children.push(
       <div key="clear" className="menu-button" onClick={this.clear_buttonHandler}>Сбросить фильтры</div>
