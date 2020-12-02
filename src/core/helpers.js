@@ -1,6 +1,7 @@
 import MobileDetect from 'mobile-detect'
 import settings from '../configuration/Settings';
 import path from "path"
+import Hash from "../improve/hash.subscribe"
 
 export const callLater = (callback,delay = 100) => {
   return setTimeout(callback,delay);
@@ -36,7 +37,7 @@ export const openLink = (link) => {
 }
 
 export const downloadLink = (link) => {
-  var a = document.createElement('a');
+  let a = document.createElement('a');
   a.href = link;
   link = link.substr(link.lastIndexOf('/') + 1);
   if (link.indexOf('?')>=0) {
@@ -125,4 +126,55 @@ export const exportCreatives = (creatives,passStatus) => {
   }
 
   return data;
+}
+
+var subscribed = false;
+
+export const initHash = (callback) => {
+  if (subscribed) {
+    return;
+  }
+  subscribed=true;
+
+  Hash.init();
+
+  let params=[];
+  for (let key in settings.defaultState.viewStatus) {
+    params.push(key);
+  }
+  Hash.subscribe(params, ()=>{
+    callback();
+  })
+}
+
+export const updateHashFromViewStatus = (viewStatus) => {
+  let hashes=[];
+  for (let key in viewStatus) {
+    if (settings.defaultState.viewStatus[key]!==viewStatus[key]) {
+      hashes.push(`${key}=${viewStatus[key]}`);
+    }
+  }
+  Hash.mute();
+  Hash.setHash("#"+hashes.join("&"));
+}
+
+export const hashIsEmpty = () => {
+  return (Hash.getHash(false)==="");
+}
+
+export const updateViewStatusFromHash = (viewStatus) => {
+  let params=Hash.getParams();
+  for (let key in params) {
+    params[key]=params[key].values.join(",");
+  }
+  let result={}
+  for (let key in viewStatus) {
+    if (params[key]) {
+      // console.log(params[key],decodeURI(params[key]));
+      result[key]=decodeURI(params[key]);
+    } else {
+      result[key]=viewStatus[key];
+    }
+  }
+  return result;
 }

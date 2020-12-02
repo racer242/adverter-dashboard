@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "base64-inline-loader": "^1.1.1",
     "element-is-visible": "^1.0.0",
+    "hash.subscribe": "^2.2.0",
     "immutable": "^4.0.0-rc.12",
     "mobile-detect": "^1.4.4",
     "path": "^0.12.7",

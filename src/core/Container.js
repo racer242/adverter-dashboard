@@ -40,8 +40,6 @@ class Container extends Component {
     let children = [];
     children.push(this.props.children);
 
-    // console.log("Render Container",this.state);
-
     children.push(
       <TopMenu
         store={this.store}
@@ -63,10 +61,5 @@ class Container extends Component {
       );
   }
 }
-
-// export default connect(
-//   null,
-//   null
-// )(Container);
 
 export default Container;

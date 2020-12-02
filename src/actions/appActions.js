@@ -214,3 +214,11 @@ export const windowDeactivated = () => {
     }
   }
 }
+
+export const getViewStatusFromHash = () => {
+  return {
+    type: 'GET_VIEW_STATUS_FROM_HASH',
+    data:{
+    }
+  }
+}

@@ -23,24 +23,24 @@ class Creative extends Component {
     };
   }
 
-  componentDidMount() {
-    this.unsubscribe=this.store.subscribe(()=>{this.onStoreChange()});
-    this.mounted=true;
-  }
-
-  componentWillUnmount() {
-    if (this.unsubscribe) {
-      this.unsubscribe();
-    }
-    this.mounted=false;
-  }
-
-  onStoreChange() {
-    if (this.mounted) {
-      let state=this.store.getState();
-      this.setState(state);
-    }
-  }
+  // componentDidMount() {
+  //   this.unsubscribe=this.store.subscribe(()=>{this.onStoreChange()});
+  //   this.mounted=true;
+  // }
+  //
+  // componentWillUnmount() {
+  //   if (this.unsubscribe) {
+  //     this.unsubscribe();
+  //   }
+  //   this.mounted=false;
+  // }
+  //
+  // onStoreChange() {
+  //   if (this.mounted) {
+  //     let state=this.store.getState();
+  //     this.setState(state);
+  //   }
+  // }
 
   render() {
     let children = [];

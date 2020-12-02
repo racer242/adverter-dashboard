@@ -30,7 +30,7 @@ const settings = {
   defaultState:{
     viewStatus:{
       mode:"frames",
-      currentFrame:0,
+      currentFrame:"0",
       format:"all",
       section:"all",
       publisher:"all",

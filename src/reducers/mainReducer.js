@@ -1,4 +1,5 @@
 import settings from './../configuration/Settings'
+import { hashIsEmpty, updateViewStatusFromHash, updateHashFromViewStatus } from './../core/helpers'
 
 let mainReducerController = (state={}, action) => {
 
@@ -25,13 +26,35 @@ let mainReducerController = (state={}, action) => {
       //     ...state,
       //   }
       // }
+      case 'SET_STORAGE_DATA': {
+        let newState={
+          ...state,
+          ...action.data,
+        }
+        if (hashIsEmpty()) {
+          updateHashFromViewStatus(newState.viewStatus);
+        } else {
+          newState.viewStatus=updateViewStatusFromHash(newState.viewStatus);
+        }
+        return newState;
+      }
+
+      case 'GET_VIEW_STATUS_FROM_HASH': {
+        let newState={
+          ...state,
+          ...action.data,
+          dataForStorageChanged:true,
+        }
+        newState.viewStatus=updateViewStatusFromHash(settings.defaultState.viewStatus);
+        return newState;
+      }
+
+      case 'SAVE_STORAGE_DATA':
       case 'WAITING_FOR_RELOAD_STORE_DATA':
       case 'STORAGE_DATA_SAVED':
-      case 'SAVE_STORAGE_DATA':
-      case 'SET_STORAGE_DATA':
+      case 'SET_STORE_DATA':
       case 'LOAD_STORE_DATA_ERROR':
       case 'RELOAD_STORE_DATA':
-      case 'SET_STORE_DATA':
       case 'WINDOW_ACTIVATED':
       case 'WINDOW_DEACTIVATED':{
         return {
@@ -54,6 +77,7 @@ let mainReducerController = (state={}, action) => {
           ...state.viewStatus,
           ...action.data,
         }
+        updateHashFromViewStatus(viewStatus);
         return {
           ...state,
           dataForStorageChanged:true,
@@ -72,6 +96,7 @@ let mainReducerController = (state={}, action) => {
           status:"all",
           passedView:"all",
         }
+        updateHashFromViewStatus(viewStatus);
         return {
           ...state,
           dataForStorageChanged:true,

@@ -41,6 +41,8 @@ class StatusBar extends Component {
     let children = [];
     children.push(this.props.children);
 
+    children.push(<div key="campName"><b>{this.state.name}</b></div>);
+
     children.push(<div key="count">Показано {this.props.viewCount} из {creativeCount}</div>);
 
     let format=this.state.viewStatus.format;
@@ -91,8 +93,6 @@ class StatusBar extends Component {
     }
     children.push(<div key="passedView">Реценизия: {passedView}</div>);
 
-
-
     let mode=this.state.viewStatus.mode;
     switch (mode) {
       case "frames": mode="кадр №"+(Number(this.state.viewStatus.currentFrame)+1); break;
@@ -101,9 +101,6 @@ class StatusBar extends Component {
       default:;
     }
     children.push(<div key="layer">Просмотр: {mode}</div>);
-
-
-
 
     return React.createElement(
       'div',

@@ -11,10 +11,10 @@ import Control from './core/Control';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
-import { appInit } from './actions/appActions';
+import { appInit, getViewStatusFromHash } from './actions/appActions';
 
 import WindowActivity from './components/WindowActivity'
-
+import { initHash } from './core/helpers'
 
 import './css/containers.css';
 import './css/menu.css';
@@ -30,12 +30,19 @@ class App extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
     };
 
-    // this.dataManager_completeHandler=this.dataManager_completeHandler.bind(this);
     this.initHandler=this.initHandler.bind(this);
     this.resizeHandler=this.resizeHandler.bind(this);
+
+    initHash(()=>{
+      Store.dispatch(
+        getViewStatusFromHash()
+      );
+    });
+
   }
 
   updateLayout() {
@@ -48,12 +55,7 @@ class App extends Component {
       windowHeight:windowInnerHeight,
     });
 
-    // Dispatcher.dispatch("onResize");
   }
-
-  // dataManager_completeHandler(data) {
-  //   Dispatcher.dispatch("onDataReady",data);
-  // }
 
   initHandler(event) {
     this.updateLayout();
@@ -64,7 +66,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // console.log("App componentDidMount");
 
     Store.dispatch(
       appInit()

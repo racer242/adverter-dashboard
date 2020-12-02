@@ -45,7 +45,6 @@ class TopMenu extends Component {
     this.selectSortMode_changeHandler=this.selectSortMode_changeHandler.bind(this);
     this.clear_buttonHandler=this.clear_buttonHandler.bind(this);
     this.reload_buttonHandler=this.reload_buttonHandler.bind(this);
-
   }
 
   componentDidMount() {
