@@ -1,6 +1,8 @@
 import settings from './../configuration/Settings'
 import { hashIsEmpty, updateViewStatusFromHash, updateHashFromViewStatus } from './../core/helpers'
 
+import feedEditorReducer from './feedEditorReducer'
+
 let mainReducerController = (state={}, action) => {
 
     // console.log("mainReducer",action);
@@ -126,6 +128,7 @@ const mainReducer = (state={}, action) => {
   }
 
   state = mainReducerController(state,action);
+  state = feedEditorReducer(state,action);
 
   return state;
 }

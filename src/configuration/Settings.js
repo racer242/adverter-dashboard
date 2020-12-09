@@ -42,10 +42,26 @@ const settings = {
     },
     passStatus:{},
     windowIsVisible:true,
+
+    feedsEditorisActive:false,
+
+    modifyFeeds: [],//{src: 'abc', sheet: 'default'}
+    // feedsContent: [
+    //                 {
+    //                   id: 'default',
+    //                   content: [
+    //                     {feedOne: ['Поле 1','Поле 2']},
+    //                     {feedTwo: ['Поле 3','Поле 4']},
+    //                     {feedThree: ['Поле 5']},
+    //                     {feedFour: ['Поле 6']},
+    //                     ]
+    //                 },
+    //               ],
   },
 
   isMobile:isMobile(),
   isLocal:isLocal(),
+  isDev:(document.location.toString().indexOf("localhost")>0),
 
   anyImage:/\.(gif|jpg|jpeg|png|svg)$/gi,
 
@@ -74,6 +90,9 @@ const settings = {
     dashboard:"dashboard",
     download:"download",
   },
+
+
+
 
 }
 

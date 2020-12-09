@@ -17,6 +17,8 @@ import {
   reloadStoreData,
 } from '../actions/appActions';
 
+import { openFeedEditor } from '../actions/feedEditorActions';
+
 import {
   objectIsEmpty,
   exportCreatives,
@@ -181,9 +183,9 @@ class TopMenu extends Component {
   }
 
   openFeedEditor(event) {
-    // this.store.dispatch(
-    //   openFeedEditor()
-    // )
+    this.store.dispatch(
+      openFeedEditor()
+    )
   }
 
   render() {

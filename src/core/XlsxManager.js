@@ -1,14 +1,11 @@
-import settings from '../configuration/Settings';
-
 import XLSX from 'xlsx';
 
 class XlsxManager {
 
-  constructor(props) {
-    super(props);
+  constructor() {
   }
 
-  loadXlsx(url,callback) {
+  load(url,callback) {
     let oReq = new XMLHttpRequest();
     oReq.open("GET", url, true);
     oReq.responseType = "arraybuffer";
@@ -34,8 +31,12 @@ class XlsxManager {
   convertSheetsToTables(data) {
     let result={};
     for (let id in data) {
+
+      if ((id.indexOf("<")===0)&&(id.indexOf(">")===id.length-1)) {
+        continue;
+      }
+
       let rows=[];
-      result[id]=rows;
       let cells=data[id];
       for (let cellId in cells) {
         let y=cellId.substr(1)-1;
@@ -45,8 +46,32 @@ class XlsxManager {
         }
         rows[y][x]=cells[cellId].v;
       }
-      rows.splice(0,1);
+      rows.splice(0,2);
+
+      if (rows.length>1) {
+        let indexRow=(rows[0]);
+        let lines=[];
+        for (let i = 1; i < rows.length; i++) {
+          let row=rows[i];
+          let fields={};
+          for (let fieldId in row) {
+            fields[indexRow[fieldId]]=row[fieldId];
+          }
+          lines.push(fields);
+        }
+        result[id]=lines;
+      }
+
+
     }
+
+
+
+
+
+
+
+
     return result;
   }
 
