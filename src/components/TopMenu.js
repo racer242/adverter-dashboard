@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Button from '@material-ui/core/Button';
+
 import {
   changeViewMode,
   setCurrenFrame,
@@ -48,6 +50,8 @@ class TopMenu extends Component {
     this.clear_buttonHandler=this.clear_buttonHandler.bind(this);
     this.reload_buttonHandler=this.reload_buttonHandler.bind(this);
     this.download_buttonHandler=this.download_buttonHandler.bind(this);
+    this.openFeedEditor=this.openFeedEditor.bind(this);
+
   }
 
   componentDidMount() {
@@ -174,6 +178,12 @@ class TopMenu extends Component {
 
     return [items, sum];
 
+  }
+
+  openFeedEditor(event) {
+    // this.store.dispatch(
+    //   openFeedEditor()
+    // )
   }
 
   render() {
@@ -504,6 +514,27 @@ class TopMenu extends Component {
     children.push(
       <div key="reload" className="menu-button" onClick={this.reload_buttonHandler}>Обновить</div>
     );
+
+    if (
+      (this.state.modifyFeeds)&&(this.state.modifyFeeds.length>0)&&
+      (!settings.isLocal)
+    ) {
+      children.push(
+        <Button
+          key="feedEditorButton"
+          variant="contained"
+          color="primary"
+          style={{
+            backgroundColor: "grey",
+            margin: 5,
+            padding: 5,
+            fontSize: 12}}
+          onClick={this.openFeedEditor}
+        >
+        Контент
+        </Button>
+      )
+    }
 
     return React.createElement(
       'div',
