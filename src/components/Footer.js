@@ -34,7 +34,7 @@ class Footer extends Component {
     return (
       <div id="Footer">
         <div>
-          Сервис автосборки интернет-баннеров <a className="adverter" href="http://www.adverter.ru/">adverter.ru</a>
+          Сервис автосборки интернет-баннеров <a className="adverter" href="http://www.adverter.ru/">adverter.ru</a>, dashboard v2.14
         </div>
       </div>
     )

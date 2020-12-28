@@ -164,8 +164,8 @@ class DataManager extends Component {
 
       let status=creative.state;
       if (!status) status="empty";
-      if (!data.statuses[creative.state])data.statuses[creative.state]=0;
-      data.statuses[creative.state]++;
+      if (!data.statuses[status]) data.statuses[status]=0;
+      data.statuses[status]++;
 
       creative.backupPath=correctUrl(creative.backupPath);
       creative.zipPath=correctUrl(creative.zipPath);

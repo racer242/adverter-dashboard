@@ -55,7 +55,11 @@ class ScrollPlace extends Component {
           ((creative.publisher===this.state.viewStatus.publisher)||(this.state.viewStatus.publisher==="all")) &&
           ((creative.platform===this.state.viewStatus.platform)||(this.state.viewStatus.platform==="all")) &&
           ((creative.feed===this.state.viewStatus.feed)||(this.state.viewStatus.feed==="all")) &&
-          ((creative.state===this.state.viewStatus.status)||(this.state.viewStatus.status==="all")) &&
+          (
+            (creative.state===this.state.viewStatus.status)||
+            ((!creative.state)&&(this.state.viewStatus.status==="empty"))||
+            (this.state.viewStatus.status==="all")
+          ) &&
           (
             (this.state.passStatus[creative.name]&&(this.state.viewStatus.passedView==="passed"))||
             (!this.state.passStatus[creative.name]&&(this.state.viewStatus.passedView==="nonpassed"))||
