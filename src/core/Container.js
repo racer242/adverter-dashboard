@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import TopMenu from '../components/TopMenu';
 import ScrollPlace from '../components/ScrollPlace';
-import FeedsEditor from '../components/FeedsEditor';
 
 class Container extends Component {
 
@@ -53,15 +52,6 @@ class Container extends Component {
         key="ScrollPlace"
       />
     );
-
-    if ((this.state)&&(this.state.feedsEditorisActive)) {
-      children.push(
-        <FeedsEditor
-          store={this.store}
-          key="FeedsEditor"
-          />
-      );
-    }
 
     return React.createElement(
       'div',

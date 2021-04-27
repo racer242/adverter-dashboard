@@ -89,6 +89,7 @@ const settings = {
   requestId: {
     dashboard:"dashboard",
     download:"download",
+    pdf:"pdf",
   },
 
 

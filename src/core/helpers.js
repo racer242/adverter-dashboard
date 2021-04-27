@@ -20,6 +20,19 @@ export const objectIsEmpty = (object) => {
   return Object.keys(object).length === 0 && object.constructor === Object;
 }
 
+export const addUniqueToUrl = (url) => {
+  if (url) {
+    let uStr=new Date().getTime();
+    if (url.indexOf("?")<0) {
+      url = url+"?u="+uStr;
+    } else {
+      url = url+"&u="+uStr;
+    }
+  }
+  return url;
+}
+
+
 export const correctUrl = (url) => {
 
   if (url) {
@@ -37,8 +50,12 @@ export const openLink = (link) => {
 }
 
 export const downloadLink = (link) => {
+
+  link=addUniqueToUrl(link);
+
   let a = document.createElement('a');
   a.href = link;
+
   link = link.substr(link.lastIndexOf('/') + 1);
   if (link.indexOf('?')>=0) {
     link = link.substr(0,link.indexOf('?'));

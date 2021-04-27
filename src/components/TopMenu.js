@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Button from '@material-ui/core/Button';
-
 import {
   changeViewMode,
   setCurrenFrame,
@@ -24,6 +22,7 @@ import {
   exportCreatives,
   makeRequestUrl,
   downloadLink,
+  openLink,
 } from '../core/helpers.js';
 
 import settings from '../configuration/Settings.js';
@@ -52,6 +51,7 @@ class TopMenu extends Component {
     this.clear_buttonHandler=this.clear_buttonHandler.bind(this);
     this.reload_buttonHandler=this.reload_buttonHandler.bind(this);
     this.download_buttonHandler=this.download_buttonHandler.bind(this);
+    this.pdf_buttonHandler=this.pdf_buttonHandler.bind(this);
     this.openFeedEditor=this.openFeedEditor.bind(this);
 
   }
@@ -160,6 +160,11 @@ class TopMenu extends Component {
   download_buttonHandler(event) {
     let campUrl=makeRequestUrl(settings.requestId.download,this.state.name);
     downloadLink(campUrl);
+  }
+
+  pdf_buttonHandler(event) {
+    let campUrl=makeRequestUrl(settings.requestId.pdf,this.state.name);
+    openLink(campUrl);
   }
 
   getSortedItems(itemsObject) {
@@ -507,6 +512,9 @@ class TopMenu extends Component {
       children.push(
         <div key="download" className="menu-button" onClick={this.download_buttonHandler}>Скачать</div>
       );
+      children.push(
+        <div key="pdf" className="menu-button" onClick={this.pdf_buttonHandler}>PDF</div>
+      );
     }
 
     children.push(
@@ -516,27 +524,6 @@ class TopMenu extends Component {
     children.push(
       <div key="reload" className="menu-button" onClick={this.reload_buttonHandler}>Обновить</div>
     );
-
-    if (
-      (this.state.modifyFeeds)&&(this.state.modifyFeeds.length>0)&&
-      (!settings.isLocal)
-    ) {
-      children.push(
-        <Button
-          key="feedEditorButton"
-          variant="contained"
-          color="primary"
-          style={{
-            backgroundColor: "grey",
-            margin: 5,
-            padding: 5,
-            fontSize: 12}}
-          onClick={this.openFeedEditor}
-        >
-        Контент
-        </Button>
-      )
-    }
 
     return React.createElement(
       'div',
